@@ -1,3 +1,4 @@
+require('dotenv').config({ path: './BackEnd/config/.env' });//fixed
 const express = require('express');
 const axios = require('axios');
 
@@ -21,7 +22,7 @@ app.post('/check-sim-swap', async (req, res) => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'apiKey': ''
+                'apiKey': process.env.API_KEY
             }
         });
 
