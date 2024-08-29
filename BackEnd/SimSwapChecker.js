@@ -1,4 +1,4 @@
-require('dotenv').config({ path: './BackEnd/config/.env' });
+require('dotenv').config({ path: './BackEnd/config/.env' });//fixed
 const express = require('express');
 const axios = require('axios');
 
