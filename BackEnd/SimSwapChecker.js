@@ -1,14 +1,17 @@
 require('dotenv').config({ path: './BackEnd/config/.env' });//fixed
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(cors());
 
-app.post('/check-sim-swap', async (req, res) => {
+app.post('/api/v1/check-sim-swap', async (req, res) => {
     const { username, phoneNumbers } = req.body;
+    console.log(username, phoneNumbers)
 
     if (!username || !phoneNumbers) {
         return res.status(400).json({ error: 'Username and phoneNumbers are required' });
@@ -17,12 +20,12 @@ app.post('/check-sim-swap', async (req, res) => {
     try {
         const response = await axios.post('https://insights.sandbox.africastalking.com/v1/sim-swap', {
             username: username,
-            phoneNumbers: phoneNumbers,
+            phoneNumbers: phoneNumbers
         }, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'apiKey': process.env.API_KEY
+                'apiKey': 'atsk_a6afd4088207b7ffcdb3869c8cf4edfc562d5724d3931287f6223bdfac824ff01576e85d'
             }
         });
 
